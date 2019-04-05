@@ -43,6 +43,10 @@ EXTERN LedControlModule LedControl;
 EXTERN ColorDetectorModule ColorDetector;
 #endif
 
+#ifdef INCLUDE_DATALOGGER_MODULE
+EXTERN DataLoggerModule DataLogger;
+#endif
+
 #ifdef INCLUDE_NOTIFICATION_MODULE
 EXTERN NotificationModule Notification;
 #endif
