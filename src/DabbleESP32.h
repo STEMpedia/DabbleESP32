@@ -2,15 +2,15 @@
  * This library is developed for Dabble app. https://thestempedia.com/product/dabble/
  * It includes modulewise sublibraries as per modules present in 
  * Dabble app.
- * Version 1.0.0
+ * Version 1.4.0
  * 
  * This library structure is derived from OneSheeld Library.
  *
  * This is licensed under GNU GPL V3 [http://www.gnu.org/licenses/gpl.txt].
  * Written by Dhrupal R Shah for ESP32, Agilo Research Pvt. Ltd
- * Created on: December 14, 2018
- * Updated on: 20181214
- * Contact: support@evive.cc
+ * Created on: April 10, 2019
+ * Updated on: 20190610
+ * Contact: support@thestempedia.com
  * Copyright (c) 2018 Agilo Research Pvt. Ltd.  All rights reserved.
  *
  * This program is free software: you can redistribute it and/or modify

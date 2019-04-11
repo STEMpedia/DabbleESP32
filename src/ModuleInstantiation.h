@@ -23,10 +23,6 @@ EXTERN GamePadModule GamePad;
 EXTERN PinMonitorModule PinMonitor;
 #endif
 
-#ifdef INCLUDE_OSCILLOSCOPE_MODULE
-EXTERN OscilloscopeModule Oscilloscope;
-#endif
-
 #ifdef INCLUDE_SENSOR_MODULE
 EXTERN SensorModule Sensor;
 #endif
@@ -47,14 +43,14 @@ EXTERN ColorDetectorModule ColorDetector;
 EXTERN DataLoggerModule DataLogger;
 #endif
 
-#ifdef INCLUDE_NOTIFICATION_MODULE
-EXTERN NotificationModule Notification;
-#endif
-
 #ifdef INCLUDE_SMS_MODULE
 EXTERN SMSModule SMS;
 #endif
 
+#ifdef INCLUDE_NOTIFICATION_MODULE
+EXTERN NotificationModule Notification;
+#endif  
+
 #ifdef INCLUDE_MUSIC_MODULE
 EXTERN MusicModule Music;
-#endif
+#endif 

@@ -4,7 +4,7 @@
    value to it.
 
    NOTE: As in esp32 any channel can be configured as a PWM channel hence any first eight pins controlled by Module
-   will be treated as PWM and others will be treated as considered as normal digital pins.
+   will be treated as PWM and others will be treated as normal digital pins.
     
 
    You can reduce the size of library compiled by enabling only those modules that you want to

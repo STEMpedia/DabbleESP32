@@ -166,9 +166,9 @@ int DabbleInputs::getPotValue(uint8_t Pot)
 
 void DabbleInputs::processData()
 {
-	#ifdef DEBUG
+	/*#ifdef DEBUG
 	Serial.println("DabbleInputs:processData");
-	#endif
+	#endif*/
 	
 	//Checking Function-ID
     byte functionId =getDabbleInstance().getFunctionId();

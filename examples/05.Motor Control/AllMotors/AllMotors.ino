@@ -2,7 +2,9 @@
    MotorControl Module is used to control actuators like DC motors and Servos.
    
    NOTE: If you are interested in using any other pin as PWM pin then use led channels 
-   from channel 4 onwards on ESP32.
+   from channel 4 onwards on ESP32.Because first four channels are for controlling motor and servo from
+   Motor control module of Dabble.
+   
    
    You can reduce the size of library compiled by enabling only those modules that you want to
    use. For this first define CUSTOM_SETTINGS followed by defining INCLUDE_modulename.

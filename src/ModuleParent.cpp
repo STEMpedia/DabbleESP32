@@ -9,9 +9,9 @@ ModuleParent::ModuleParent(byte ModuleNo)
 {
 	//Serial.println("FOUND NEW MODULE");
 	ModuleID = ModuleNo ;
-	#ifdef DEBUG
+	/*#ifdef DEBUG
 	Serial.println(ModuleID);
-	#endif
+	#endif*/
 	isCallBackSet=false;
 	DabbleClass::addToModulesArray(this);
 }

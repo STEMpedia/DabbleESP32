@@ -15,9 +15,9 @@ motorControls::motorControls() : ModuleParent(CONTROLS_ID)
 
 void motorControls::processData()
 {
-	    #ifdef DEBUG
+	   /* #ifdef DEBUG
 	    Serial.println("Controls:processData");
-		#endif 
+		#endif */
 		functionId=getDabbleInstance().getFunctionId();
 		if(functionId == 0x01 || functionId == 0x02)
 		{

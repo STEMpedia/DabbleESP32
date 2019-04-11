@@ -1,13 +1,13 @@
 /*
-  Camera Module allows you to click images and videos from smartphone by sending commands from your evive.
+  Camera Module allows you to click images and videos from smartphone by sending commands from your board.
   This function demonstrates functions available in library for camera module. 
 
-  Open Serial monitor and follow the instructions printed there to take images and videos in different cases.
+  Open Serial monitor and follow the instructions printed there to take videos in different settings of camera.
 
    You can reduce the size of library compiled by enabling only those modules that you want
    to use. For this first define CUSTOM_SETTINGS followed by defining INCLUDE_modulename.
 
-   Explore more on: https://thestempedia.com/docs/dabble/
+   Explore more on: https://thestempedia.com/docs/dabble/camera-module-photos-videos/
 */
 #define CUSTOM_SETTINGS
 #define INCLUDE_CAMERA_MODULE
@@ -26,7 +26,6 @@ void loop() {
   if( a == '1')
   {
     Camera.setParameters(FRONT,OFF,HIGH_QUALITY,0);  //Direction , Flash, Quality, zoom(0-100%)
-    Camera.captureImage();
     Camera.startRecording();
   }
   if( a == '2')

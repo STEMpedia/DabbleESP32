@@ -20,7 +20,7 @@ void SMSModule::sendMessage(String number, String content)
 		Serial.println();
    #endif*/
    Dabble.sendModuleFrame(SMS_ID,0,SENDNUMBER,1,new FunctionArg(number.length(), numberInt));
-   Dabble.sendModuleFrame(SMS_ID,0,SENDCONTENT,1,new FunctionArg(content.length(),(byte *)&content[0]));
+   Dabble.sendModuleFrame(SMS_ID,0,SENDCONTENT,1,new FunctionArg(content.length(),(byte*)&content[0]));
    delete [] numberInt;
 }
 
@@ -31,13 +31,13 @@ NotificationModule::NotificationModule()
 
 void NotificationModule::setTitle(String title)
 {
-	Dabble.sendModuleFrame(NOTIFICATION_ID,0,CREATE_NOTIFICATION, 1, new FunctionArg(title.length(),(byte *)&title[0]));
+	Dabble.sendModuleFrame(NOTIFICATION_ID,0,CREATE_NOTIFICATION, 1, new FunctionArg(title.length(),(byte*)&title[0]));
 }
 
 void NotificationModule::notifyPhone(String content)
 {
 	if(prevContent != content)
-	Dabble.sendModuleFrame(NOTIFICATION_ID,0,UPDATE_NOTIFICATION, 1, new FunctionArg(content.length(),(byte *)&content[0]));
+	Dabble.sendModuleFrame(NOTIFICATION_ID,0,UPDATE_NOTIFICATION, 1, new FunctionArg(content.length(),(byte*)&content[0]));
     
 	prevContent = content;
 }

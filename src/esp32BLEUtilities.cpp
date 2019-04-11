@@ -35,10 +35,14 @@ class BleCallbacks: public BLECharacteristicCallbacks {
         for (int i = 0; i < rx_Value.length(); i++)
 		{
 		  rxdataBuffer[i] = rx_Value[i];
+		  #ifdef DEBUG
 		  Serial.print(rxdataBuffer[i]);
           Serial.print(" ");
+		  #endif
 		}
+		#ifdef DEBUG
 		Serial.println();
+		#endif
         rxdatalength=rx_Value.length();
 	    bytesremaining=rx_Value.length();
 		  
@@ -77,7 +81,9 @@ void Esp32ble::begin(std::string a)
 
   // Start advertising
   bleServer->getAdvertising()->start();
+  #ifdef DEBUG
   Serial.println("Waiting a client connection to notify...");
+  #endif
 }
 
 void Esp32ble::write(uint8_t a)
@@ -92,7 +98,9 @@ void Esp32ble::write(uint8_t a)
     if (!isDeviceConnected && prevDeviceConnected) {
         delay(500); // give the bluetooth stack the chance to get things ready
         bleServer->startAdvertising(); // restart advertising
+		#ifdef DEBUG
         Serial.println("start advertising");
+		#endif
         prevDeviceConnected = isDeviceConnected;
     }
 }
@@ -109,7 +117,9 @@ void Esp32ble::write(std::string x)
     if (!isDeviceConnected && prevDeviceConnected) {
         delay(500); // give the bluetooth stack the chance to get things ready
         bleServer->startAdvertising(); // restart advertising
+		#ifdef DEBUG
         Serial.println("start advertising");
+		#endif
         prevDeviceConnected = isDeviceConnected;
     }
 }
@@ -126,7 +136,9 @@ void Esp32ble::write(int a)
     if (!isDeviceConnected && prevDeviceConnected) {
         delay(500); // give the bluetooth stack the chance to get things ready
         bleServer->startAdvertising(); // restart advertising
+		#ifdef DEBUG
         Serial.println("start advertising");
+		#endif
         prevDeviceConnected = isDeviceConnected;
     }
 }
@@ -143,7 +155,9 @@ void Esp32ble::write(float a)
     if (!isDeviceConnected && prevDeviceConnected) {
         delay(500); // give the bluetooth stack the chance to get things ready
         bleServer->startAdvertising(); // restart advertising
+		#ifdef DEBUG
         Serial.println("start advertising");
+		#endif
         prevDeviceConnected = isDeviceConnected;
     }
 }

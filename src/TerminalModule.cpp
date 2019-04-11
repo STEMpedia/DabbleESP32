@@ -64,7 +64,7 @@ bool TerminalModule::compareString(String text)
 	String compareData= "";
 	readString();
     compareData = comparestring;
-	Serial.println("Terminal String" + comparestring);
+	//Serial.println("Terminal String" + comparestring);
 	
     if(stringclearflag3 ==1)
 	{

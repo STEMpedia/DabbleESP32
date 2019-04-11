@@ -49,7 +49,7 @@ void DataLoggerModule::createColumn(String colName)
 	//end
 	uint8_t a = columnNumber+1;
 	String sendColumnName = columnName[columnNumber];
-    Dabble.sendModuleFrame(DATALOGGER_ID,0,COLUMNNAME,2,new FunctionArg(1,&a),new FunctionArg(sendColumnName.length(),(byte*)&sendColumnName[0]));
+    Dabble.sendModuleFrame(DATALOGGER_ID,0,COLUMNNAME,2,new FunctionArg(1,&a),new FunctionArg(sendColumnName.length(),(byte *)&sendColumnName[0]));
 	columnNumber++;
 }
 

@@ -15,7 +15,7 @@
 
 void setup() {
   Serial.begin(115200);  // make sure your Serial Monitor is also set at this baud rate.
-  Dabble.begin("MyEsp32");  //Enter baudrate of your bluetooth.Connect bluetooth on Bluetooth port present on evive.
+  Dabble.begin("MyEsp32");  ////set bluetooth name of your device
 }
 
 void loop() {

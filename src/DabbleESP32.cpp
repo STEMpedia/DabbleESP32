@@ -19,6 +19,13 @@ bool DabbleClass::isFirstFrame=false;
 ModuleParent * DabbleClass::ModulesArray[]={0};
 byte DabbleClass::requestsCounter=0;
 HttpRequest ** DabbleClass::requestsArray=0;
+
+
+uint8_t FrameLimits[4][15] = {{0, 1,  2,  3, 4, 5, 6, 7, 8, 9, 10,  11,   12,  13,   14},          //Module-ID
+	                          {3, 3,  2,  3, 9, 4, 2, 0, 2, 3,  3,   4,    6,   5,    3},          //Funtcion_ID
+                              {1, 1,255,  1, 3, 1, 1, 0, 2, 1,  1,  26,    2,   1,    1},          //Arg1
+                              {5, 2,255, 32, 4, 2, 1, 0, 4, 2,  1,   3,   50, 255,    1}};         //Arg2
+
 //Class Constructor
 DabbleClass::DabbleClass()
 {
@@ -118,8 +125,8 @@ void DabbleClass::appWrite(byte command)
   if(isInit){
 	    esp32ble.write(command);
 		#ifdef DEBUG
-		    Serial.print(command,HEX);
-			Serial.print(" ");
+		    Serial.print("Sent: ");
+			Serial.println(command,HEX);
 		#endif
 	}
    if(!dontDelay)
@@ -337,6 +344,12 @@ void DabbleClass::processInput(int data) {
 			datalengthcounter=0;
             argumentcounter=0;
 			argumentnumber=data; 
+			if(argumentnumber > FrameLimits[2][Module])
+		    {
+				framestart = false;
+				counter = 0;
+				return;
+			}
 			if(argumentnumber !=0)
 			{
 				isArgumentsNumberMalloced=true;
@@ -353,7 +366,13 @@ void DabbleClass::processInput(int data) {
             #endif
 			datalengthcounter = 0;
 			argumentsize = data;     //size of each argument line
-		    if(argumentnumber !=0)
+		    if(argumentsize > FrameLimits[3][Module])
+			{
+				framestart = false;
+				counter = 0;
+				return;
+			}
+			if(argumentnumber !=0)
 			{
 				
 				argumentL[argumentcounter] = argumentsize;
@@ -429,11 +448,11 @@ void DabbleClass::processInput(int data) {
                   for (int i=0;i<ModulesCounter;i++) {
                     if (Module == ModulesArray[i]->getModuleId()){
                       found = true;
-                        #ifdef DEBUG
+                        /*#ifdef DEBUG
 						 Serial.print("Module: ");
 						 Serial.print(Module, HEX);
 						 Serial.print(" ");
-						#endif
+						#endif*/
                     }
                    }
 				  }
@@ -444,10 +463,16 @@ void DabbleClass::processInput(int data) {
                   }
                 }
 			    else if(counter==2){
-                  functions=data;
-                  #ifdef DEBUG
-                  Serial.print("C2 ");
-                  #endif
+                functions=data;
+			    if(functions > FrameLimits[1][Module])
+				{
+				    counter = 0;
+					framestart=false;
+					return;
+				}
+                #ifdef DEBUG
+					Serial.print("C2 ");
+				#endif
                 }
             counter++;
           }
@@ -460,7 +485,7 @@ void DabbleClass::processInput()
 	
 	if(esp32ble.available())
 	{
-		isDabbleConnected = true;	
+		isDabbleConnected = true;
 		while(esp32ble.available())
 		{
 			byte data=esp32ble.read();
@@ -544,10 +569,16 @@ void DabbleClass::processFrame(){
   if(functionId == BOARDID_REQUEST)
   {
 	 // uint8_t BoardId_evive[1]={0x01};
-      uint8_t BoardId_ESP32[4] = {0x06,1,3,0};
-	  uint8_t BoardId_Other[4] = {0x05,1,3,0};
-	  #ifdef ESP32
-	  sendModuleFrame(Dabble_ID,0,BOARDID_REQUEST,1,new FunctionArg(4,BoardId_ESP32));
+      uint8_t BoardId_Mega[4] = {0x02,1,4,0};
+	  uint8_t BoardId_Uno[4] =  {0x03,1,4,0};
+	  uint8_t BoardId_Nano[4] = {0x04,1,4,0};
+	  uint8_t BoardId_Other[4] = {0x05,1,4,0};
+	  #if ((defined(ARDUINO_AVR_MEGA2560)) || (defined(ARDUINO_AVR_MEGA)))
+	  sendModuleFrame(Dabble_ID,0,BOARDID_REQUEST,1,new FunctionArg(4,BoardId_Mega));
+      #elif(defined(ARDUINO_AVR_NANO))
+	  sendModuleFrame(Dabble_ID,0,BOARDID_REQUEST,1,new FunctionArg(4,BoardId_Nano));
+      #elif(defined(ARDUINO_AVR_UNO))
+	  sendModuleFrame(Dabble_ID,0,BOARDID_REQUEST,1,new FunctionArg(4,BoardId_Uno));
       #else
       sendModuleFrame(Dabble_ID,0,BOARDID_REQUEST,1,new FunctionArg(4,BoardId_Other));
       #endif  
