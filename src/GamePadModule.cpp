@@ -235,6 +235,22 @@ uint8_t GamePadModule::getRadius()
      return 0;
 }
 
+float GamePadModule::getXaxisData()
+{
+	uint16_t angle=((value >> 3)*15);
+	uint8_t radius=value&0x07;
+	float x_value= float(radius*(float(cos(float(angle*PI/180)))));
+	return x_value;
+}
+
+float GamePadModule::getYaxisData()
+{
+	uint16_t angle=((value >> 3)*15);
+	uint8_t radius=value&0x07;
+	float y_value= float(radius*(float(sin(float(angle*PI/180)))));
+	return y_value;
+}
+
 float GamePadModule::getx_axis()
 {
 	uint16_t angle=((value >> 3)*15);

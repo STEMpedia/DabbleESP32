@@ -63,6 +63,64 @@ bool DabbleInputs::getStatus_TactileSwitch2()
 	return ((data_5 & 0x80) == 0x80);
 }
 
+
+uint16_t DabbleInputs::getPot1Value()
+{
+return uint16_t(data_1 << 8) + uint16_t (data_2);
+}
+
+uint16_t DabbleInputs::getPot2Value()
+{
+return uint16_t(data_3 << 8) + uint16_t (data_4);
+}
+
+uint8_t DabbleInputs::getSlideSwitch1Value()
+{
+	if((data_5 & 0x04) == 0x04)
+	{
+		state_ss1 =2;
+	
+	}
+	else if((data_5 & 0x02) == 0x02)
+	{
+		state_ss1 =0;
+		
+	}
+	else if((data_5 & 0x01) == 0x01)
+	{
+		state_ss1 =1;
+		
+	}
+	return state_ss1;
+}
+
+uint8_t DabbleInputs::getSlideSwitch2Value()
+{
+	if((data_5 & 0x20) == 0x20)
+	{
+		state_ss2=2;
+	}
+	else if((data_5&0x10) == 0x10)
+	{
+	state_ss2=0;
+	}
+	else if((data_5&0x08) == 0x08)
+	{
+	state_ss2=1;
+	}
+	return state_ss2;
+}
+
+bool DabbleInputs::getTactileSwitch1Value()
+{
+	return ((data_5 & 0x40) == 0x40);
+}
+
+bool DabbleInputs::getTactileSwitch2Value()
+{
+	return ((data_5 & 0x80) == 0x80);
+}
+
 bool DabbleInputs::getSlideSwitchStatus(uint8_t SS,uint8_t dir)
 {	
 	if(SS == 1 && dir == 2)   //SS1 left

@@ -18,21 +18,21 @@ void loop() {
   Dabble.processInput();             //this function is used to refresh data obtained from smartphone.Hence calling this function is mandatory in order to get data properly from your mobile.
 
   Serial.print("Pot1:");
-  Serial.print(Inputs.getvalue_Pot1());
+  Serial.print(Inputs.getPot1Value());
   Serial.print('\t');
   Serial.print("Pot2:");
-  Serial.print(Inputs.getvalue_Pot2());
+  Serial.print(Inputs.getPot2Value());
   Serial.print('\t');
   Serial.print("SS1:");
-  Serial.print(Inputs.getStatus_SlideSwitch1());
+  Serial.print(Inputs.getSlideSwitch1Value());
   Serial.print('\t');
   Serial.print("SS2:");
-  Serial.print(Inputs.getStatus_SlideSwitch2());
+  Serial.print(Inputs.getSlideSwitch2Value());
   Serial.print('\t');
   Serial.print("TS1:");
-  Serial.print(Inputs.getStatus_TactileSwitch1());
+  Serial.print(Inputs.getTactileSwitch1Value());
   Serial.print('\t');
   Serial.print("TS2:");
-  Serial.print(Inputs.getStatus_TactileSwitch2());
+  Serial.print(Inputs.getTactileSwitch2Value());
   Serial.println();
 }

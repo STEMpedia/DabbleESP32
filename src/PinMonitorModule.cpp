@@ -57,19 +57,20 @@ void PinMonitorModule::sendAnalogData()
   }
   for (int i = 0; i < m; i=i+2)
   {
-	analog_data[i] = counter << 4;
+	analog_data[i] = (analog_pin[counter]-30) << 4;
     analog_data[i] = analog_data[i] | ((analogRead(analog_pin[counter]) & 0x0F00) / 256); 
     analog_data[i+1]= (analogRead(analog_pin[counter]) & 0x00ff);
 	counter++;  
   }
     /*#ifdef DEBUG                     //Remove from final file
-	for(int j=0;j<n;j++)
+	for(int j=0;j<m;j++)
 	{
-		Serial.print(analog_data[j]);
+		Serial.print(analog_data[j],BIN);
 		Serial.print("    ");
 	}
 	Serial.println();
 	#endif*/
+	//Dabble.sendModuleFrame(PINMONITOR_ID,0,function_id_a,1,new FunctionArg(m,analog_data));
   if(getDabbleInstance().getScreenId()==3 && getDabbleInstance().readModuleId()==3) 
   {
    Dabble.sendModuleFrame(PINMONITOR_ID,0,function_id_a,1,new FunctionArg(m,analog_data));

@@ -17,15 +17,14 @@ bool DabbleClass::inACallback=false;
 bool DabbleClass::callbacksInterrupts=false;
 bool DabbleClass::isFirstFrame=false;
 ModuleParent * DabbleClass::ModulesArray[]={0};
-byte DabbleClass::requestsCounter=0;
-HttpRequest ** DabbleClass::requestsArray=0;
+//byte DabbleClass::requestsCounter=0;
+//HttpRequest ** DabbleClass::requestsArray=0;
 
 
-uint8_t FrameLimits[4][15] = {{0, 1,  2,  3, 4, 5, 6, 7, 8, 9, 10,  11,   12,  13,   14},          //Module-ID
-	                          {3, 3,  2,  3, 9, 4, 2, 0, 2, 3,  3,   4,    6,   5,    3},          //Funtcion_ID
-                              {1, 1,255,  1, 3, 1, 1, 0, 2, 1,  1,  26,    2,   1,    1},          //Arg1
-                              {5, 2,255, 32, 4, 2, 1, 0, 4, 2,  1,   3,   50, 255,    1}};         //Arg2
-
+uint8_t FrameLimits[4][18] = {{0, 1,  2,  3, 4, 5, 6, 7, 8, 9, 10,  11,   12,  13,   14, 15, 16,  17},          //Module-ID
+	                          {3, 3,  2,  3, 9, 4, 2, 0, 2, 3,  3,   4,    6,   5,    3,  1,  1,  3},           //Funtcion_ID
+                              {1, 1,255,  1, 3, 1, 1, 0, 2, 1,  1,  26,    2,   1,    1,  2,  1, 100},          //Arg1
+                              {5, 2,255, 32, 4, 2, 1, 0, 4, 2,  1,   3,   50, 255,    1,  1,  2, 255}};         //Arg2
 //Class Constructor
 DabbleClass::DabbleClass()
 {
@@ -74,12 +73,12 @@ void DabbleClass::init()
 {
   isInit=true;
   sendModuleFrame(Dabble_ID,0,CHECK_CONNECTION,0);
-  if(requestsArray!=0){
+  /*if(requestsArray!=0){
     for(int i=0;i<requestsCounter;i++)
       requestsArray[i]->sendInitFrame();
     free(requestsArray);
     requestsCounter=0;
-  }
+  }*/
 }
 
 //Library Starter
@@ -91,13 +90,13 @@ void DabbleClass::addToModulesArray(ModuleParent * Module)
   
 }
 // #ifdef INTERNET_Module
-void DabbleClass::addToUnSentRequestsArray(HttpRequest * request)
+/*void DabbleClass::addToUnSentRequestsArray(HttpRequest * request)
 {
   if(requestsCounter==MAX_NO_OF_REQUESTS) return;
   if(requestsCounter<=0)
     requestsArray=(HttpRequest**)malloc(sizeof(HttpRequest*)*MAX_NO_OF_REQUESTS);
   requestsArray[requestsCounter++] = request;  
-}
+}*/
 // #endif
 bool DabbleClass::isInitialized()
 {
@@ -315,8 +314,8 @@ float DabbleClass::convertBytesToFloat(byte *data)
 //Incomming Frames processing 
 void DabbleClass::processInput(int data) {
 	#ifdef DEBUG
-	Serial.print(data, HEX);
-	Serial.print(" ");
+	Serial.write(data);
+	//Serial.print(" ");
 	#endif
     
 	if(data==-1){
@@ -417,9 +416,8 @@ void DabbleClass::processInput(int data) {
             endFrame=data;
               if(endFrame==END_OF_FRAME)                                   //if the endframe is equal to zero send to Modules and free memory
               {
-                      framestart=false;
-					  
-					 // Serial.println("Sent to modules");
+                     framestart=false;
+					 //Serial.println("Sent to modules");
 					 sendToModules();
 					 /* if(isModuleFrameCallback && Module!=0)
                       {
@@ -470,7 +468,7 @@ void DabbleClass::processInput(int data) {
 					framestart=false;
 					return;
 				}
-                #ifdef DEBUG
+        #ifdef DEBUG
 					Serial.print("C2 ");
 				#endif
                 }

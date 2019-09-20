@@ -58,9 +58,9 @@
 #include "ModuleIncludes.h"
 #include "ModuleParent.h"
 #include "ModuleInstantiation.h"
-#include "InternetModule.h"
-#include "HttpResponse.h"
-#include "HttpRequest.h"
+//#include "InternetModule.h"
+//#include "HttpResponse.h"
+//#include "HttpRequest.h"
 
 #define ONE_SECOND 1000
 
@@ -93,7 +93,7 @@
 
 
 //Number of Module
-#define MODULE_NO	15
+#define MODULE_NO	18
 extern bool callBackForDataLogger;
 extern void (*dataLoggerCallBack)(void);
 //Class for Datalength and Data
@@ -171,7 +171,7 @@ public:
 	//Adding objects in array 
 	static void addToModulesArray(ModuleParent *);
 	// #ifdef INTERNET_MODULE
-	static void addToUnSentRequestsArray(HttpRequest *);
+	//static void addToUnSentRequestsArray(HttpRequest *);
 	// #endif
 	static bool isInitialized();
 	static bool isSoftwareSerial();
@@ -230,7 +230,7 @@ private:
 	static ModuleParent * ModulesArray[MODULE_NO];
 	// #ifdef INTERNET_MODULE
 	//Array of pointers to un sent requests
-	static HttpRequest ** requestsArray;
+	//static HttpRequest ** requestsArray;
 	// #endif
 	//Send Incomming Data to Modules
 	void sendToModules();

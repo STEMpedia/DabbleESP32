@@ -1,62 +1,63 @@
-
-#ifndef	InternetModule_h
+#ifndef InternetModule_h
 #define InternetModule_h
 
-#define MAX_NO_OF_REQUESTS					20
-
 #include "ModuleParent.h"
-#include "HttpResponse.h"
-#include "HttpRequest.h"
+
+#include "CircularBuffer.h"
+
+//Function-Id
+#define HTTP_GET 0x01
+#define HTTP_SUCCESS 0x02
+#define HTTP_RESPONSE 0x03	
 
 
-//Output Function ID's for Internet calss
-#define INTERNET_GET						0x09
-#define INTERNET_POST						0x0A
-#define INTERNET_PUT						0x0B
-#define INTERNET_DELETE						0x0C
-#define INTERNET_CANCEL_ALL_REQUESTS		0x0D
-#define INTERNET_SET_AUTHENTICATION			0x0E
-#define INTERNET_CLEAR_AUTHENTICATIOM		0x0F
-#define INTERNET_SET_DEFAULT_MAX_RESPONSE	0x10
-#define INTERNET_QUERY_JSON					0x14
-#define INTERNET_QUERY_JSON_ARRAY_LENGTH	0x17
-
-//Input Function ID's for Internet class
-#define INTERNET_GET_ERROR					0x06
-
-//Literals
-#define	REQUEST_CAN_NOT_BE_FOUND			0x00
-#define	NOT_CONNECTED_TO_NETWORK			0x01	
-#define	URL_IS_NOT_FOUND					0x02
-#define	ALREADY_EXECUTING_REQUEST			0x03
-#define	URL_IS_WRONG						0x04
-
-
-
-class InternetModule : public ModuleParent
+class InternetModule :public ModuleParent
 {
 public:
-	//Constructor 
+	//Constructor
 	InternetModule();
-	//Senders 
-	bool performGet(HttpRequest &);
-	bool performPost(HttpRequest &);
-	bool performPut(HttpRequest &);
-	bool performDelete(HttpRequest &);
-	void cancelAllRequests();
-	void ignoreResponse(HttpRequest &);
-	void setBasicAuthentication(const char * ,const char *);
-	void clearBasicAuthentication();
-	void setIntialResponseMaxBytesCount(int );
-	//Set on for userFunction
-	void setOnError(void (*)(int,int));
+	void sendGETRequest(String);
+	
+	void updateChannelFeed(String KEY,int noOfData, int value1=0, int value2=0, int value3=0, int value4=0, int value5=0, int value6=0, int value7=0, int value8=0);
+	void updateChannelField(String KEY,uint8_t fieldNumber,int data);
+	float getFieldData(String KEY,uint8_t fieldNumber,long timeout=10000);
+	void getWeatherData(String KEY, float Lat, float Lon);
+	float getLatitude();
+	float getLongitude();
+	float getTemperatureK();
+	float getTemperatureC();
+	float getTemperatureF();
+	float getHumidity();
+	float getPressure();
+	//float getWeatherValueFloat(int feild);
+	//String getWeatherValueString(int feild);
+	
 private:
-	bool isSetOnErrorCallBackAssigned;
+    String mainString = "";
+	bool successState= 0;
 	void processData();
-	bool addToRequestsArray(HttpRequest &);
-	void (*internetErrorCallBack)(int,int);
-	HttpRequest * requestsArray[MAX_NO_OF_REQUESTS];
-friend class HttpRequest;
+	float latitude;
+	float longitude;
+	float temperatureK;
+	float temperatureC;
+	float temperatureF;
+	float humidity;
+	float pressure;
+	float visibility;
+	float windSpeed;
+	float windDirection;
+	float cloud;
+	float rain1hr;
+	float dataTime;
+	float sunRiseTime;
+	float sunSetTime;
+	String weather = String();
+	String weatherDescription = String();
+	String countryCode = String();
+	String cityName = String();
+	String dataTimeString = String();
+	String sunRiseTimeString = String();
+	String sunSetTimeString = String();	
 };
 //Extern Object
 extern InternetModule Internet;

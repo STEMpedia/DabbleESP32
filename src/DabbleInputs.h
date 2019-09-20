@@ -14,6 +14,15 @@ public:
 	//Constructor
 	DabbleInputs();
 	//Checker Functions
+	uint16_t getPot1Value();
+	uint16_t getPot2Value();
+	
+	uint8_t getSlideSwitch1Value();
+	uint8_t getSlideSwitch2Value();
+	
+	bool getTactileSwitch1Value();
+	bool getTactileSwitch2Value();
+
 	uint16_t getvalue_Pot1();
 	uint16_t getvalue_Pot2();
 	
@@ -22,6 +31,7 @@ public:
 	
 	bool getStatus_TactileSwitch1();
 	bool getStatus_TactileSwitch2();
+
 	
 	
     bool getSlideSwitchStatus(uint8_t SS,uint8_t dir); //1 2 SS1 left       //2 2 SS2 left

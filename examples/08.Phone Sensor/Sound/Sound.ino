@@ -23,6 +23,6 @@ void loop() {
 void print_Sound_data()
 {
   Serial.print("SOUND: ");
-  Serial.println(Sensor.getdata_Sound(), 3);
+  Serial.println(Sensor.getSoundDecibels(), 3);
   Serial.println();
 }

@@ -7,6 +7,91 @@ SensorModule::SensorModule(): ModuleParent(SENSORS_ID)
 
 }
 
+float SensorModule::getAccelerometerXaxis()
+{
+return accelo_x;
+}
+
+float SensorModule::getAccelerometerYaxis()
+{
+return accelo_y;
+}
+
+float SensorModule::getAccelerometerZaxis()
+{
+return accelo_z;
+}
+
+
+float SensorModule::getGyroscopeXaxis()
+{
+return gyro_x;
+}
+
+float SensorModule::getGyroscopeYaxis()
+{
+return gyro_y;
+}
+
+float SensorModule::getGyroscopeZaxis()
+{
+return gyro_z;
+}
+
+
+float SensorModule::getMagnetometerXaxis()
+{
+return magneto_x;
+}
+
+float SensorModule::getMagnetometerYaxis()
+{
+return magneto_y;
+}
+
+float SensorModule::getMagnetometerZaxis()
+{
+return magneto_z;
+}
+
+
+float SensorModule::getProximityDistance()
+{
+return proximity;
+}
+
+float SensorModule::getLightIntensity()
+{
+return light;
+}
+
+float SensorModule::getSoundDecibels()
+{
+return sound_level;
+}
+
+
+
+float SensorModule::getTemperature()
+{
+return temperature;
+}
+
+float SensorModule::getBarometerPressure()
+{
+return barometer;
+}
+
+float SensorModule::getGPSlongitude()
+{
+return gps_longitude;
+}
+
+float SensorModule::getGPSLatitude()
+{
+return gps_latitude;
+}
+
 float SensorModule::getdata_Accelerometer_xaxis()
 {
 return accelo_x;

@@ -24,12 +24,12 @@ void loop() {
 void print_Accelerometer_data()
 {
   Serial.print("X_axis: ");
-  Serial.print(Sensor.getdata_Accelerometer_xaxis(), 4);
+  Serial.print(Sensor.getAccelerometerXaxis(), 4);
   Serial.print('\t');
   Serial.print("Y_axis: ");
-  Serial.print(Sensor.getdata_Accelerometer_yaxis(), 4);
+  Serial.print(Sensor.getAccelerometerYaxis(), 4);
   Serial.print('\t');
   Serial.print("Z_axis: ");
-  Serial.println(Sensor.getdata_Accelerometer_zaxis(), 4);
+  Serial.println(Sensor.getAccelerometerZaxis(), 4);
   Serial.println();
 }

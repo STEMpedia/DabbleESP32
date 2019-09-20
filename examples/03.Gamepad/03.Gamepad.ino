@@ -77,11 +77,11 @@ void loop() {
   Serial.print("Radius: ");
   Serial.print(b);
   Serial.print('\t');
-  float c = GamePad.getx_axis();
+  float c = GamePad.getXaxisData();
   Serial.print("x_axis: ");
   Serial.print(c);
   Serial.print('\t');
-  float d = GamePad.gety_axis();
+  float d = GamePad.getYaxisData();
   Serial.print("y_axis: ");
   Serial.println(d);
   Serial.println();

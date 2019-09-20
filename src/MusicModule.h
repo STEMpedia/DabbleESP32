@@ -10,9 +10,10 @@ class MusicModule:public ModuleParent
 {
 	public:
 	MusicModule();
-	void play(char*);
-	void addToQueue(char*);
+	void play(String);
+	void addToQueue(String);
 	void stop();
+	void playMusic(uint8_t , String);
 };
 extern MusicModule Music;
 #endif

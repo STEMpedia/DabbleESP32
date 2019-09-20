@@ -54,3 +54,11 @@ EXTERN NotificationModule Notification;
 #ifdef INCLUDE_MUSIC_MODULE
 EXTERN MusicModule Music;
 #endif 
+
+/*#ifdef INCLUDE_ROBOTICARM_MODULE
+EXTERN RoboticArmModule RoboticArm;
+#endif 
+
+#ifdef INCLUDE_HOMEAUTOMATION_MODULE
+EXTERN HomeAutomationModule HomeAutomation;;
+#endif*/

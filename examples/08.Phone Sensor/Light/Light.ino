@@ -24,6 +24,6 @@ void loop() {
 void print_Light_data()
 {
   Serial.print("LIGHT: ");
-  Serial.println(Sensor.getdata_Light(), 7);
+  Serial.println(Sensor.getLightIntensity(), 7);
   Serial.println();
 }

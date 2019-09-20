@@ -46,8 +46,11 @@ public:
 	bool isRightPressed();
 	uint16_t getAngle();
 	uint8_t getRadius();
-	float getx_axis();
-	float gety_axis();
+	float getXaxisData();
+	float getYaxisData();
+
+	float getx_axis();	
+    float gety_axis();
 	
 	//Pictoblox
 	bool isPressed(uint8_t a);

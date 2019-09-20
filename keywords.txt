@@ -109,6 +109,24 @@ setDataSpeed	KEYWORD2
 play	KEYWORD2
 addToQueue	KEYWORD2
 stop	KEYWORD2
+getAccelerometerXaxis	KEYWORD2
+getAccelerometerYaxis	KEYWORD2
+getAccelerometerZaxis	KEYWORD2
+getGyroscopeXaxis	KEYWORD2
+getGyroscopeYaxis	KEYWORD2
+getGyroscopeZaxis	KEYWORD2
+getMagnetometerXaxis	KEYWORD2
+getMagnetometerYaxis	KEYWORD2
+getMagnetometerZaxis	KEYWORD2
+getProximityDistance	KEYWORD2
+getLightIntensity	KEYWORD2
+getSoundDecibels	KEYWORD2
+getTemperature	KEYWORD2
+getBarometerPressure	KEYWORD2
+getGPSlongitude	KEYWORD2
+getGPSlatitude	KEYWORD2
+getXaxisData	KEYWORD2
+getYaxisData	KEYWORD2
 #######################################
 # Constants And Literals (LITERAL1)
 #######################################

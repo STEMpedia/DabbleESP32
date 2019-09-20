@@ -24,6 +24,6 @@ void loop() {
 void print_Barometer_data()
 {
   Serial.print("Barometer: ");
-  Serial.println(Sensor.getdata_Barometer(), 7);
+  Serial.println(Sensor.getBarometerPressure(), 7);
   Serial.println();
 }
