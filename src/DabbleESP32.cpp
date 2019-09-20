@@ -567,19 +567,22 @@ void DabbleClass::processFrame(){
   if(functionId == BOARDID_REQUEST)
   {
 	 // uint8_t BoardId_evive[1]={0x01};
-      uint8_t BoardId_Mega[4] = {0x02,1,4,1};
-	  uint8_t BoardId_Uno[4] =  {0x03,1,4,1};
-	  uint8_t BoardId_Nano[4] = {0x04,1,4,1};
-	  uint8_t BoardId_Other[4] = {0x05,1,4,1};
+    uint8_t BoardId_Mega[4] = {0x02,1,5,1};
+	  uint8_t BoardId_Uno[4] =  {0x03,1,5,1};
+	  uint8_t BoardId_Nano[4] = {0x04,1,5,1};
+    uint8_t BoardId_ESP32[4] = {0x06,1,5,1};
+	  uint8_t BoardId_Other[4] = {0x05,1,5,1};
 	  #if ((defined(ARDUINO_AVR_MEGA2560)) || (defined(ARDUINO_AVR_MEGA)))
 	  sendModuleFrame(Dabble_ID,0,BOARDID_REQUEST,1,new FunctionArg(4,BoardId_Mega));
-      #elif(defined(ARDUINO_AVR_NANO))
+    #elif(defined(ARDUINO_AVR_NANO))
 	  sendModuleFrame(Dabble_ID,0,BOARDID_REQUEST,1,new FunctionArg(4,BoardId_Nano));
-      #elif(defined(ARDUINO_AVR_UNO))
+    #elif(defined(ARDUINO_AVR_UNO))
 	  sendModuleFrame(Dabble_ID,0,BOARDID_REQUEST,1,new FunctionArg(4,BoardId_Uno));
-      #else
-      sendModuleFrame(Dabble_ID,0,BOARDID_REQUEST,1,new FunctionArg(4,BoardId_Other));
-      #endif  
+     #elif(ESP32)
+	  sendModuleFrame(Dabble_ID,0,BOARDID_REQUEST,1,new FunctionArg(4,BoardId_ESP32));
+    #else
+    sendModuleFrame(Dabble_ID,0,BOARDID_REQUEST,1,new FunctionArg(4,BoardId_Other));
+    #endif  
 	 /* #if (defined(__AVR_ATmega2560__))
 	  sendModuleFrame(Dabble_ID,0,BOARDID_REQUEST,1,new FunctionArg(4,BoardId_Mega));
 	  #elif (defined(__AVR_ATmega328P__))
