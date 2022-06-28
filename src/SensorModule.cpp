@@ -243,6 +243,7 @@ float SensorModule::getSensorData(uint8_t a)
 	{
 		return light;
 	}
+	return 0;
 }
 
 void SensorModule::processData()

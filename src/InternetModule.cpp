@@ -292,9 +292,7 @@ float InternetModule::getFieldData(String KEY,uint8_t fieldNumber,long timeout)
 		return fieldValue8;
       }
 	}
-	else{
-		return -100;
-	}
+	return -100;
 }
 
 void InternetModule::getWeatherData(String KEY, float lat, float lon)
