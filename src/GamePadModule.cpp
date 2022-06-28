@@ -2,8 +2,9 @@
 #define FROM_DABBLE_LIBRARY
 #include "DabbleESP32.h"
 #include "GamePadModule.h"
+#ifndef PI
 #define PI 3.14159
-
+#endif
 
 //Class Constructor
 GamePadModule::GamePadModule() : ModuleParent(GAMEPAD_ID)

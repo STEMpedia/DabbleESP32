@@ -158,10 +158,7 @@ int ColorDetectorModule::getRedColor()
    {
 		return colorArray[0][0];
    }
-   else
-   {
-		return -1;
-   }
+   return -1;
 }
 
 int ColorDetectorModule::getGreenColor()
@@ -170,10 +167,7 @@ int ColorDetectorModule::getGreenColor()
    {
 		return colorArray[0][1];
    }
-   else
-   {
-		return -1;
-   }
+   return -1;
 }
 
 int ColorDetectorModule::getBlueColor()
@@ -182,10 +176,7 @@ int ColorDetectorModule::getBlueColor()
    {
 		return colorArray[0][2];
    }
-   else
-   {
-		return -1;
-   }
+   return -1;
 }
 
 
@@ -214,10 +205,7 @@ int ColorDetectorModule::getRedColor(byte row, byte col)
 			return colorArray[((currentArgnumber/gridSize)*4)+col][0];
 		}
 	}
-	else
-	{
-		return -1;
-	}
+	return -1;
 }
 
 int ColorDetectorModule::getGreenColor(byte row, byte col)
@@ -245,10 +233,7 @@ int ColorDetectorModule::getGreenColor(byte row, byte col)
 			return colorArray[((currentArgnumber/gridSize)*4)+col][1];
 		}
 	}
-	else
-	{
-		return -1;
-	}
+	return -1;
 }
 int ColorDetectorModule::getBlueColor(byte row, byte col)
 {
@@ -275,10 +260,7 @@ int ColorDetectorModule::getBlueColor(byte row, byte col)
 			return colorArray[((currentArgnumber/gridSize)*4)+col][2];
 		}
 	}
-	else
-	{
-		return -1;
-	}
+	return -1;
 }
 
 uint8_t ColorDetectorModule::getGridSize()
@@ -364,11 +346,7 @@ int ColorDetectorModule::getColorValue(uint8_t colorName,uint8_t Row,uint8_t Col
 			return -1;
         }
 	}
-	else
-	{
 		return -1;
-	}
-	
 }
 
 int ColorDetectorModule::getGrayScaleColor(byte row,byte col)
@@ -396,10 +374,7 @@ int ColorDetectorModule::getGrayScaleColor(byte row,byte col)
 			return colorArray[((currentArgnumber/gridSize)*4)+col][0];
 		}
 	}
-	else
-	{
-		return -1;
-	}
+	return -1;
 }
 
 ColorPrediction::ColorPrediction(){
@@ -423,10 +398,10 @@ bool ColorPrediction::checkColor(int *colorValue, uint8_t colorName)
 			colorFlag = i+1;
 		}
 	}
-	if(colorFlag == colorName)
+	if(colorFlag == colorName) {
 		return 1;
-	else
-		return 0;
+	}
+	return 0;
 	}
 }
 
