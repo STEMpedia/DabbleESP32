@@ -82,31 +82,21 @@ if(a == 0)
 {
 	if(mode == 0)
 	 return !!(value & (1<<UP_BIT));
-    else
-	return 0;
 }	
 else if(a==1)
 {
 	 if(mode == 0)
 	 return !!(value & (1<<DOWN_BIT));
-     else
-	 return 0;
-	
 }
 else if(a==2)
 {
      if(mode == 0)	
 	 return  !!(value & (1<<LEFT_BIT));
-     else
-	 return 0;	
 }
 else if(a==3)
 {
 	if(mode == 0)
 	 return !!(value & (1<<RIGHT_BIT));
-    else
-	 return 0;
-	
 }
 else if(a==4)
 {
@@ -132,7 +122,7 @@ else if(a==9)
 {
 	return !!(value0 & (1<<SQUARE_BIT));
 }
-
+return 0;
 }
 
 //GamePad Input Data Processing  
@@ -201,12 +191,10 @@ float GamePadModule::getJoystickData(uint8_t b)
 		float y_value= float(radius*(float(sin(float(angle*PI/180)))));
 	if(b == 0)
 	{
-		
 		return angle;
 	}
 	else if(b==1)
 	{
-		
 		return radius;
 	}
 	else if(b==2)
@@ -217,6 +205,7 @@ float GamePadModule::getJoystickData(uint8_t b)
 	{
 		return y_value;
 	}
+	return 0;
 }
 
 
@@ -224,16 +213,14 @@ uint16_t GamePadModule::getAngle()
 {
 	if(mode == 1)
 	 return ((value >> 3)*15);
-    else
-     return 0;		
+    return 0;		
 }
 
 uint8_t GamePadModule::getRadius()
 {
 	if(mode == 1)
 	 return (value&0x07);
-    else
-     return 0;
+    return 0;
 }
 
 float GamePadModule::getXaxisData()
