@@ -1,6 +1,5 @@
 #if (defined(ESP32))
-#ifndef BLE_UTILITIES_H
-#define BLE_UTILITIES_H
+
 #include <Arduino.h>
 #include <BLEDevice.h>
 #include <BLEServer.h>
@@ -16,16 +15,26 @@
 class Esp32ble
 {
 public:
-void begin(std::string a);
-void write(uint8_t a);
-void write(std::string x);
-void write(int a);
-void write(float a);
-uint8_t available();
-uint8_t read();
-void stop();
+    // void begin(std::string a);
+    // void write(uint8_t a);
+    // void write(std::string x);
+    // void write(int a);
+    // void write(float a);
+    // uint8_t available();
+    // uint8_t read();
+    // void stop();
+    void begin(String a);
+    void write(uint8_t a);
+    void write(String x);
+    void write(int a);
+    void write(float a);
+    uint8_t available();
+    uint8_t read();
+    void stop();
 };
 extern bool BLE_status;        //extern BLE_status
 extern Esp32ble esp32ble;
 #endif
-#endif
+
+
+

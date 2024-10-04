@@ -15,9 +15,9 @@ motorControls::motorControls() : ModuleParent(CONTROLS_ID)
 
 void motorControls::processData()
 {
-	   /* #ifdef DEBUG
-	    Serial.println("Controls:processData");
-		#endif */
+	
+	//  Serial.println("Controls:processData");
+
 		functionId=getDabbleInstance().getFunctionId();
 		if(functionId == 0x01 || functionId == 0x02)
 		{
@@ -96,9 +96,9 @@ void motorControls::runMotor1(uint8_t pwm,uint8_t direction1,uint8_t direction2)
 	pinMode(direction1,OUTPUT);
 	pinMode(direction2,OUTPUT);
 	if(prevMotor1pin != pwm)
-	{
-		ledcAttachPin(pwm,0);
-		ledcSetup(0,100,8);
+	{	ledcAttachChannel(pwm, 100, 8, 0);
+		// ledcAttachPin(pwm,0);
+		// ledcSetup(0,100,8);
 	}
 	if(pwmMotor1 > 0)
 	{
@@ -126,9 +126,9 @@ void motorControls::runMotor2(uint8_t pwm,uint8_t direction1,uint8_t direction2)
 	pinMode(direction1,OUTPUT);
 	pinMode(direction2,OUTPUT);
 	if(prevMotor2pin != pwm)
-	{
-		ledcAttachPin(pwm,1);
-		ledcSetup(1,100,8);
+	{	ledcAttachChannel(pwm, 100, 8, 1);
+		// ledcAttachPin(pwm,1);
+		// ledcSetup(1,100,8);
 	}
 	if(pwmMotor2 > 0)
 	{
@@ -167,9 +167,9 @@ void motorControls::runMotor2(uint8_t pwm,uint8_t direction1,uint8_t direction2)
 void motorControls::runServo1(uint8_t pin)    //Attach Servo1 to channel 3
 {
 	if(prevServo1pin!=pin)
-	{
-		ledcAttachPin(pin,3);
-		ledcSetup(3,50,16);
+	{	ledcAttachChannel(pin, 50, 16, 3);
+		// ledcAttachPin(pin,3);
+		// ledcSetup(3,50,16);
 	}
 	writeServoAngle(angleServo1,3);
 	prevServo1pin = pin;
@@ -178,9 +178,9 @@ void motorControls::runServo1(uint8_t pin)    //Attach Servo1 to channel 3
 void motorControls::runServo2(uint8_t pin)	 //Attach Servo2 to channel 4
 {
     if(prevServo2pin!=pin)
-	{
-		ledcAttachPin(pin,4);
-		ledcSetup(4,50,16);
+	{	ledcAttachChannel(pin, 50, 16, 4);
+		// ledcAttachPin(pin,4);
+		// ledcSetup(4,50,16);
 	}
 	writeServoAngle(angleServo2,4);
 	prevServo2pin = pin;
@@ -200,9 +200,9 @@ int motorControls::microsecondsToDuty(int pulse)
 
 void motorControls::writeServoAngle(int angle,uint8_t channel)
 {
-	/*Serial.print(angle);
-	Serial.print(" ");
-	Serial.println(channel);*/
+	// Serial.print(angle);
+	// Serial.print(" ");
+	// Serial.println(channel);
 	int _pulse = angleTomicroseconds(angle);
 	int _duty =  microsecondsToDuty(_pulse);
 	ledcWrite(channel,_duty);

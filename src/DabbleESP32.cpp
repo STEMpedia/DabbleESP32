@@ -52,8 +52,9 @@ DabbleClass::DabbleClass()
 
 //Library Starter
 void DabbleClass::begin(std::string bleName)
-{
-	esp32ble.begin(bleName);
+{ 
+  esp32ble.begin(String(bleName.c_str()));
+	// esp32ble.begin(bleName);
 	init();
 }
 
